@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{d566c152-d5e2-4c0e-ae17-68d4daf8ca98}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -37,6 +40,21 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vmath.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="mat.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Teapot.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="vec.h">
+      <Filter>util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

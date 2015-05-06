@@ -134,10 +134,15 @@
     <ClCompile Include="ShaderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="customshader.h" />
     <ClInclude Include="LoadShaders.h" />
+    <ClInclude Include="mat.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ShaderManager.h" />
+    <ClInclude Include="Teapot.h" />
+    <ClInclude Include="vec.h" />
+    <ClInclude Include="vmath.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\openglbook5\freeglut-2.6.0\lib\freeglut_static.lib" />

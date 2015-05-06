@@ -1,4 +1,4 @@
-debug/*
+Debug/*
 *.log
 *.ilk
 *.exp
@@ -8,3 +8,4 @@ debug/*
 *.suo
 *.opensdf
 *.sdf
+*.idb

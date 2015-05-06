@@ -28,7 +28,7 @@ ReadShader( const char* filename )
 #endif // WIN32
 
     if ( !infile ) {
-		if (strlen(filename) > 30)  //....
+		if (strlen(filename) > 100)  //....
 		{
 			int len = strlen(filename);
 			GLchar* source = new GLchar[len + 1];
@@ -59,7 +59,7 @@ ReadShader( const char* filename )
 //----------------------------------------------------------------------------
 
 GLuint
-LoadShaders( ShaderInfo* shaders )
+LoadShaders(ShaderInfo* shaders )
 {
     if ( shaders == NULL ) { return 0; }
 

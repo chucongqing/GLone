@@ -11,6 +11,7 @@
 #include "ShaderManager.h"
 #include "LoadShaders.h"
 #include "customshader.h"
+#include "vmath.h"
 #define WINDOW_WIDTH ( 800 ) 
 #define WINDOW_HEIGHT ( 600 ) 
 
@@ -28,9 +29,34 @@ const GLuint NumVertices = 6;
 GLuint ebo[1];
 GLuint vao[1];
 GLuint vbo[1];
+GLuint render_prog;
 
+GLint render_model_matrix_loc;
+GLint render_projection_matrix_loc;
+float aspect;
 void init4()
 {
+
+	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+
+	aspect = float(WINDOW_HEIGHT) / float(WINDOW_WIDTH);
+
+
+	static  ShaderInfo shader_info[] =
+	{
+		{ GL_VERTEX_SHADER, "./shader/primitive_restart.vs.glsl" },
+		{ GL_FRAGMENT_SHADER, "./shader/primitive_restart.fs.glsl" },
+		{ GL_NONE, NULL }
+	};
+
+	render_prog = LoadShaders(shader_info);
+
+	glUseProgram(render_prog);
+
+	// "model_matrix" is actually an array of 4 matrices
+	render_model_matrix_loc = glGetUniformLocation(render_prog, "model_matrix");
+	render_projection_matrix_loc = glGetUniformLocation(render_prog, "projection_matrix");
+
 	static const GLfloat vertex_positions[] =
 	{
 		-1.0f, -1.0f, 0.0f, 1.0f,
@@ -69,9 +95,84 @@ void init4()
 	glBufferData(GL_ARRAY_BUFFER,
 		sizeof(vertex_positions)+sizeof(vertex_colors),
 		NULL, GL_STATIC_DRAW);
+
+	glBufferSubData(GL_ARRAY_BUFFER, 0,
+		sizeof(vertex_positions), vertex_positions);
+	glBufferSubData(GL_ARRAY_BUFFER,
+		sizeof(vertex_positions), sizeof(vertex_colors),
+		vertex_colors);
+
+
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0); // layout == 0
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (const GLvoid *)sizeof(vertex_positions));
+
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+
+	glBindVertexArray(0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
+void display4()
+{
+	float t = float(GetTickCount() & 0x1FFF) / float(0x1FFF);
+	static float q = 0.0f;
+	static const vmath::vec3 X(1.0f, 0.0f, 0.0f);
+	static const vmath::vec3 Y(0.0f, 1.0f, 0.0f);
+	static const vmath::vec3 Z(0.0f, 0.0f, 1.0f);
+	
+	vmath::mat4 model_matrix;
 
+	// Setup
+	//glEnable(GL_CULL_FACE);
+	//glDisable(GL_DEPTH_TEST);
+
+	glClear(GL_COLOR_BUFFER_BIT );
+
+	// Activate simple shading program
+	glUseProgram(render_prog);
+
+	// Set up the model and projection matrix
+	vmath::mat4 projection_matrix(vmath::frustum(-1.0f, 1.0f, -aspect, aspect, 1.0f, 500.0f));
+	glUniformMatrix4fv(render_projection_matrix_loc, 1, GL_FALSE, projection_matrix);
+
+	// Set up for a glDrawElements call
+	glBindVertexArray(vao[0]);  //激活
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo[0]); //激活
+
+
+	// Draw Arrays...
+	model_matrix = vmath::translate(-3.0f, 0.0f, -5.0f);
+	glUniformMatrix4fv(render_model_matrix_loc, 4, GL_FALSE, model_matrix);
+	glDrawArrays(GL_TRIANGLES, 0, 3); //绘制一系列的集合图元，采用数组元素，第二个参数为开始绘制的顶点，第三个为
+	//绘制顶点的数量
+
+
+	// DrawElements
+	model_matrix = vmath::translate(-1.0f, 0.0f, -5.0f);
+	glUniformMatrix4fv(render_model_matrix_loc, 4, GL_FALSE, model_matrix);
+	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, 0);
+	//用第二个参数的数量的元素,来绘制一系列的几何图元  最后一个参数为offset以字节来度量
+
+
+
+	// DrawElementsBaseVertex
+	model_matrix = vmath::translate(1.0f, 0.0f, -5.0f);
+	glUniformMatrix4fv(render_model_matrix_loc, 4, GL_FALSE, model_matrix);
+	glDrawElementsBaseVertex(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, NULL, 1); //最后一个参数为基地址
+
+	// DrawArraysInstanced
+	model_matrix = vmath::translate(3.0f, 0.0f, -5.0f);
+	glUniformMatrix4fv(render_model_matrix_loc, 4, GL_FALSE, model_matrix);
+	glDrawArraysInstanced(GL_TRIANGLES, 0, 3, 1);
+
+	
+	glutSwapBuffers();
+	glutPostRedisplay();
+}
 /* Helper function to convert GLSL types to storage sizes */
 size_t
 TypeSize(GLenum type)
@@ -325,7 +426,7 @@ int _tmain(int argc, TCHAR* argv[])
 	glutInit(&argc, argv);
 	
 
-	glutInitWindowSize(640, 480);
+	glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
 	glutInitDisplayMode(  GLUT_RGBA  );
 
@@ -342,10 +443,16 @@ int _tmain(int argc, TCHAR* argv[])
 	}
 
 	
-	init();
-	glutDisplayFunc(display);
+	init4();
+	glutDisplayFunc(display4);
 	
 
 	glutMainLoop();
+
+
+	glUseProgram(0);
+	glDeleteProgram(render_prog);
+	glDeleteVertexArrays(1, vao);
+	glDeleteBuffers(1, vbo);
 	return 0;
 }
