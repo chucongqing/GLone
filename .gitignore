@@ -1,0 +1,10 @@
+debug/*
+*.log
+*.ilk
+*.exp
+*.pdb
+*.obj
+*.tlog
+*.suo
+*.opensdf
+*.sdf
