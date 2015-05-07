@@ -16,6 +16,9 @@
     <Filter Include="util">
       <UniqueIdentifier>{d566c152-d5e2-4c0e-ae17-68d4daf8ca98}</UniqueIdentifier>
     </Filter>
+    <Filter Include="chapter">
+      <UniqueIdentifier>{9cf685db-eeef-4300-a8d7-ca6319cc99de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -26,6 +29,9 @@
     </ClCompile>
     <ClCompile Include="LoadShaders.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sbm.cpp">
+      <Filter>util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +60,21 @@
       <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="vec.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="test1.h">
+      <Filter>chapter</Filter>
+    </ClInclude>
+    <ClInclude Include="fragment_test.h">
+      <Filter>chapter</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="fragment_test2.h">
+      <Filter>chapter</Filter>
+    </ClInclude>
+    <ClInclude Include="sbm.h">
       <Filter>util</Filter>
     </ClInclude>
   </ItemGroup>
