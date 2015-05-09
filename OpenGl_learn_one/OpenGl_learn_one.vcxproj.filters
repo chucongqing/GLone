@@ -24,26 +24,20 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderManager.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadShaders.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="sbm.cpp">
       <Filter>util</Filter>
     </ClCompile>
+    <ClCompile Include="loadTexture.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadShaders.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="MyControls.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ShaderManager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadShaders.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="customshader.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -76,6 +70,21 @@
     </ClInclude>
     <ClInclude Include="sbm.h">
       <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="vtc.h">
+      <Filter>chapter</Filter>
+    </ClInclude>
+    <ClInclude Include="loadTexture.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadShaders.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="customshader.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="MyControls.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

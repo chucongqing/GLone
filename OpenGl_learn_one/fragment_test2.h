@@ -10,7 +10,7 @@ namespace fragtest2
 {
 
 	float aspect;
-	GLuint windowmode =  GLUT_RGBA | GLUT_DEPTH;
+	
 	// Program to render from the light's position
 	GLuint render_light_prog;
 	struct

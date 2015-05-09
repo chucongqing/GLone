@@ -4,7 +4,8 @@
 
 //#define FRAGMENT_TEST
 //#define TEST1
-#define FRAGMENT_TEST2
+//#define FRAGMENT_TEST2
+#define VTC
 
 #ifdef FRAGMENT_TEST
 #include "fragment_test.h"
@@ -18,6 +19,9 @@
 #include "fragment_test2.h"
 #endif
 
+#ifdef VTC
+#include "vtc.h"
+#endif
 
 int _tmain(int argc, TCHAR* argv[])
 {
@@ -28,7 +32,7 @@ int _tmain(int argc, TCHAR* argv[])
 
 	glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-	glutInitDisplayMode(  fragtest2::windowmode );
+	glutInitDisplayMode(  windowmode );
 
 	glutCreateWindow("3D Effects Demo");
 
@@ -43,9 +47,15 @@ int _tmain(int argc, TCHAR* argv[])
 	}
 
 	
-	fragtest2::init();
-	glutDisplayFunc(fragtest2::display);
-	//glutKeyboardFunc(fragtest2::keyboard);
+	ns_vtc::init();
+	glutDisplayFunc(ns_vtc::display);
+
+#ifdef KEYBORD_ON
+	glutKeyboardFunc(ns_vtc::keyboard);
+	glutPassiveMotionFunc(MyControls::mouse_routine);
+	glutKeyboardUpFunc(ns_vtc::keyboardup);
+#endif
+	//
 	//glutReshapeFunc();
 	glutMainLoop();
 

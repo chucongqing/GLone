@@ -71,7 +71,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>F:\Source\openglbook5\freeglut-2.6.0\include;F:\Source\openglbook5\Src\GLTools\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\Source\openglbook5\freeglut-2.6.0\include;F:\Source\openglbook5\Src\GLTools\include;F:\Source\OpenGL-tutorial_v0014_33\external\glm-0.9.4.0;F:\Source\OpenGL-tutorial_v0014_33\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WIN32;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
@@ -130,9 +130,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LoadShaders.cpp" />
+    <ClCompile Include="loadTexture.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyControls.cpp" />
     <ClCompile Include="sbm.cpp" />
-    <ClCompile Include="ShaderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h" />
@@ -141,14 +142,16 @@
     <ClInclude Include="fragment_test.h" />
     <ClInclude Include="fragment_test2.h" />
     <ClInclude Include="LoadShaders.h" />
+    <ClInclude Include="loadTexture.h" />
     <ClInclude Include="mat.h" />
+    <ClInclude Include="MyControls.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="sbm.h" />
-    <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="Teapot.h" />
     <ClInclude Include="test1.h" />
     <ClInclude Include="vec.h" />
     <ClInclude Include="vmath.h" />
+    <ClInclude Include="vtc.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\openglbook5\freeglut-2.6.0\lib\freeglut_static.lib" />

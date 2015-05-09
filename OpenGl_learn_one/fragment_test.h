@@ -15,7 +15,7 @@ namespace fragtest{
 	GLuint Buffers[NumBuffers];
 	const GLuint NumVertices = 6;
 
-	GLuint windowmode = GLUT_STENCIL | GLUT_RGBA | GLUT_DEPTH;
+	
 	void reshape(int x, int y)
 	{
 		glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
