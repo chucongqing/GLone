@@ -93,7 +93,8 @@ void MyControls::computeMatricesFromInputs(){
  		cos(verticalAngle) * sin(horizontalAngle),
 		sin(verticalAngle),
  		cos(verticalAngle) * cos(horizontalAngle)
- 		);
+ 		);  // got it!
+	this->m_direction = direction;
 // 	glm::vec3 direction(
 // 		sin(verticalAngle) * cos(horizontalAngle),
 // 		cos(verticalAngle),
@@ -103,11 +104,14 @@ void MyControls::computeMatricesFromInputs(){
 
 
 	// Right vector
-	glm::vec3 right = glm::vec3(
-		sin(horizontalAngle - 3.14f / 2.0f),
-		0,
+ 	glm::vec3 right = glm::vec3(
+ 		sin(horizontalAngle - 3.14f / 2.0f),
+ 		0,
 		cos(horizontalAngle - 3.14f / 2.0f)
-		);
+ 		);
+
+//	glm::vec3 up1 = glm::vec3(0.0f, 1.0f, 0.0f);
+//	glm::vec3 right = glm::normalize(glm::cross(up1, direction));
 
 	// Up vector
 	glm::vec3 up = glm::cross(right, direction);
@@ -121,11 +125,11 @@ void MyControls::computeMatricesFromInputs(){
 		position -= direction * deltaTime * speed;
 	}
 	// Strafe right
-	if (a){
+	if (d){
 		position += right * deltaTime * speed;
 	}
 	// Strafe left
-	if (d){
+	if (a){
 		position -= right * deltaTime * speed;
 	}
 
@@ -142,4 +146,74 @@ void MyControls::computeMatricesFromInputs(){
 
 	// For the next frame, the "last time" will be "now"
 	lastTime = currentTime;
+}
+
+
+void MyControls::keyboard(unsigned char key, int x, int y)
+{
+	switch (key) {
+	case 033:  // ASCII Escape Key Code
+		exit(EXIT_SUCCESS);
+		break;
+	case KEY(w):{
+					printf("key w !");
+					MyControls::getInstance()->w = 1;
+	}break;
+	case KEY(a):{
+					MyControls::getInstance()->a = 1;
+	}break;
+	case KEY(s):{
+					MyControls::getInstance()->s = 1;
+	}break;
+	case KEY(d):{
+					MyControls::getInstance()->d = 1;
+	}break;
+
+	case KEY(m): {
+					 MyControls::getInstance()->w = 0;
+					 MyControls::getInstance()->a = 0;
+					 MyControls::getInstance()->s = 0;
+					 MyControls::getInstance()->d = 0;
+	} break;
+	default:{
+				printf("............");
+	}
+	}
+
+	glutPostRedisplay();
+}
+
+
+void MyControls::keyboardup(unsigned char key, int x, int y)
+{
+	switch (key) {
+	case 033:  // ASCII Escape Key Code
+		exit(EXIT_SUCCESS);
+		break;
+	case KEY(w):{
+					printf("key w up!");
+					MyControls::getInstance()->w = 0;
+	}break;
+	case KEY(a):{
+					MyControls::getInstance()->a = 0;
+	}break;
+	case KEY(s):{
+					MyControls::getInstance()->s = 0;
+	}break;
+	case KEY(d):{
+					MyControls::getInstance()->d = 0;
+	}break;
+
+	case KEY(m): {
+					 MyControls::getInstance()->w = 0;
+					 MyControls::getInstance()->a = 0;
+					 MyControls::getInstance()->s = 0;
+					 MyControls::getInstance()->d = 0;
+	} break;
+	default:{
+				printf("............");
+	}
+	}
+
+	glutPostRedisplay();
 }

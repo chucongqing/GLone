@@ -2,11 +2,10 @@
 #define  vtc_h_
 
 #include "common.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+
 
 #include "MyControls.h"
-#define KEY(x) #@x
+
 
 namespace ns_vtc
 {
@@ -15,11 +14,15 @@ namespace ns_vtc
 	static GLuint MatrixID;
 	static glm::mat4 MVP;
 	static GLuint TextureID;
+	static GLuint TextureID2;
 	static GLuint Texture;
+	static GLuint Texture2;
 	static GLuint vertexbuffer;
 	static GLuint uvbuffer;
 	void init()
 	{
+		glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+
 		glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 		// Enable depth test
 		glEnable(GL_DEPTH_TEST);
@@ -57,11 +60,13 @@ namespace ns_vtc
 		// Our ModelViewProjection : multiplication of our 3 matrices
 		MVP =  Projection* View * Model ; // Remember, matrix multiplication is the other way around
 		
-		//Texture = loadBMP_custom("uvtemplate.bmp");
-		Texture = loadDDS("uvtemplate.DDS");
+		Texture = loadBMP_custom("uvtemplate.bmp");
+		Texture2 = loadDDS("uvtemplate.DDS");
 
 		// Get a handle for our "myTextureSampler" uniform
 		TextureID = glGetUniformLocation(programID, "myTextureSampler");
+		TextureID2 = glGetUniformLocation(programID, "myTextureSampler2");
+
 		// Our vertices. Tree consecutive floats give a 3D vertex; Three consecutive vertices give a triangle.
 		// A cube has 6 faces with 2 triangles each, so this makes 6*2=12 triangles, and 12*3 vertices
 		static const GLfloat g_vertex_buffer_data[] = {
@@ -178,6 +183,13 @@ namespace ns_vtc
 		// Set our "myTextureSampler" sampler to user Texture Unit 0
 		glUniform1i(TextureID, 0);
 
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, Texture2);
+		// Set our "myTextureSampler2" sampler to user Texture Unit 1
+		glUniform1i(TextureID2, 1);
+		
 		// 1rst attribute buffer : vertices
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);

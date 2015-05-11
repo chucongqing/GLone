@@ -5,7 +5,9 @@
 //#define FRAGMENT_TEST
 //#define TEST1
 //#define FRAGMENT_TEST2
-#define VTC
+//#define VTC
+//#define LIGHT1
+#define LIGHTING_MAP
 
 #ifdef FRAGMENT_TEST
 #include "fragment_test.h"
@@ -22,6 +24,15 @@
 #ifdef VTC
 #include "vtc.h"
 #endif
+
+#ifdef LIGHT1
+#include "light.h"
+#endif
+
+#ifdef LIGHTING_MAP
+#include "LightMap.h"
+#endif
+
 
 int _tmain(int argc, TCHAR* argv[])
 {
@@ -46,14 +57,15 @@ int _tmain(int argc, TCHAR* argv[])
 		return 1;
 	}
 
-	
-	ns_vtc::init();
-	glutDisplayFunc(ns_vtc::display);
+	LightMap lm;
+	lm.init();
+	LightMap::m_currentScene = &lm;
+	glutDisplayFunc(LightMap::display);
 
 #ifdef KEYBORD_ON
-	glutKeyboardFunc(ns_vtc::keyboard);
+	glutKeyboardFunc(MyControls::keyboard);
 	glutPassiveMotionFunc(MyControls::mouse_routine);
-	glutKeyboardUpFunc(ns_vtc::keyboardup);
+	glutKeyboardUpFunc(MyControls::keyboardup);
 #endif
 	//
 	//glutReshapeFunc();

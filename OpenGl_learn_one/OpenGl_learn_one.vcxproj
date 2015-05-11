@@ -77,8 +77,8 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>F:\Source\openglbook5\freeglut-2.6.0\lib;F:\Source\openglbook5\VisualStudio2008\GLTools\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gltools.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>F:\Source\openglbook5\freeglut-2.6.0\lib;F:\Source\openglbook5\VisualStudio2008\GLTools\Release;$(SolutionDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>gltools.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -129,24 +129,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Base.cpp" />
+    <ClCompile Include="light.cpp" />
+    <ClCompile Include="LightMap.cpp" />
     <ClCompile Include="LoadShaders.cpp" />
     <ClCompile Include="loadTexture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyControls.cpp" />
     <ClCompile Include="sbm.cpp" />
+    <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Base.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="customshader.h" />
     <ClInclude Include="fragment_test.h" />
     <ClInclude Include="fragment_test2.h" />
+    <ClInclude Include="light.h" />
+    <ClInclude Include="LightMap.h" />
     <ClInclude Include="LoadShaders.h" />
     <ClInclude Include="loadTexture.h" />
     <ClInclude Include="mat.h" />
     <ClInclude Include="MyControls.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="sbm.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="SOIL.h" />
     <ClInclude Include="Teapot.h" />
     <ClInclude Include="test1.h" />
     <ClInclude Include="vec.h" />

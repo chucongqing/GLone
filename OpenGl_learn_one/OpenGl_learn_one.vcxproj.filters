@@ -19,6 +19,9 @@
     <Filter Include="chapter">
       <UniqueIdentifier>{9cf685db-eeef-4300-a8d7-ca6319cc99de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="util\SOIL">
+      <UniqueIdentifier>{7963ca02-021e-4444-95e0-f530b2c2ebfb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -35,6 +38,18 @@
     </ClCompile>
     <ClCompile Include="MyControls.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Base.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="LightMap.cpp">
+      <Filter>chapter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +100,24 @@
     </ClInclude>
     <ClInclude Include="MyControls.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="light.h">
+      <Filter>chapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Base.h">
+      <Filter>chapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="LightMap.h">
+      <Filter>chapter</Filter>
+    </ClInclude>
+    <ClInclude Include="SOIL.h">
+      <Filter>util\SOIL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

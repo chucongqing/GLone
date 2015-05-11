@@ -18,7 +18,10 @@ public:
 	static MyControls* getInstance();
 	void computeMatricesFromInputs();
 
+	static  void keyboard(unsigned char key, int x, int y);
+	static void keyboardup(unsigned char key, int x, int y);
 	static void mouse_routine(int x, int y);
+
 	glm::mat4 getViewMatrix(){
 		return ViewMatrix;
 	}
@@ -28,6 +31,13 @@ public:
 
 	int screen_width;
 	int screen_height;
+
+	glm::vec3 getPosition(){
+	return position;
+	}
+	glm::vec3 getFront(){
+		return m_direction;
+	}
 
 	short w;
 	short s;
@@ -41,6 +51,7 @@ private:
 
 	// Initial position : on +Z
 	glm::vec3 position ;
+	glm::vec3 m_direction;
 	// Initial horizontal angle : toward -Z
 	float horizontalAngle ;
 	// Initial vertical angle : none
